@@ -378,9 +378,7 @@ export default function DataLayer() {
           className="w-full bg-platform-google text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-              <GoogleIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            <GoogleIcon className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 text-white" />
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Google Trends</h3>
               <p className="text-[10px] sm:text-xs text-white/80">Keywords BNPL y cuotas - Score: {scores.search}/10</p>
@@ -454,9 +452,7 @@ export default function DataLayer() {
           className="w-full bg-platform-tiktok text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-              <TikTokIcon className="w-5 h-5 sm:w-6 sm:h-6 text-platform-tiktok" />
-            </div>
+            <TikTokIcon className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 text-white" />
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">TikTok Creative Center</h3>
               <p className="text-[10px] sm:text-xs text-white/80">Hashtags virales - Score: {scores.trend}/10</p>
@@ -560,9 +556,7 @@ export default function DataLayer() {
           className="w-full bg-platform-meta text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-              <MetaIcon className="w-5 h-5 sm:w-6 sm:h-6 text-platform-meta" />
-            </div>
+            <MetaIcon className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 text-white" />
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Meta/Facebook Trends</h3>
               <p className="text-[10px] sm:text-xs text-white/80">Redes sociales - Score: {scores.social}/10</p>
@@ -686,15 +680,13 @@ export default function DataLayer() {
       <div className="bg-fitzone-slate rounded-xl shadow-lg overflow-hidden border border-fitzone-purple/10">
         <button
           onClick={() => toggleSection('ga4')}
-          className="w-full bg-platform-ga4 text-fitzone-charcoal p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
+          className="w-full bg-platform-ga4 text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-              <GA4Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            <GA4Icon className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 text-white" />
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Google Analytics 4</h3>
-              <p className="text-[10px] sm:text-xs text-fitzone-charcoal/80">Conversión - Score: {scores.intent}/10</p>
+              <p className="text-[10px] sm:text-xs text-white/90">Conversión - Score: {scores.intent}/10</p>
             </div>
           </div>
           {expandedSections.ga4 ? <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
