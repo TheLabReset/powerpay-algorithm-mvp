@@ -963,21 +963,46 @@ Documentadas para no confundirse en futuras adaptaciones:
 Los nombres de los tokens (`fitzone-purple`, etc.) son históricos del primer cliente y se mantienen por compatibilidad. Solo cambiar los valores hex en `tailwind.config.js`. Tailwind JIT propaga los cambios automáticamente.
 
 ### Iconos de plataformas
-`src/components/PlatformIcons.jsx` contiene SVGs inline de Simple Icons (simpleicons.org) para Google (G multicolor), TikTok (logo monochrome), Meta (Facebook "f") y Google Analytics 4. No requieren instalación npm.
+`src/components/PlatformIcons.jsx` contiene SVGs inline de Simple Icons (simpleicons.org) **versión monochrome** para Google ("G"), TikTok, Meta (Facebook "f") y Google Analytics 4. No requieren instalación npm.
+
+**Convención de uso — sin wrapper:** cada componente respeta `currentColor` con `fill="currentColor"`. Esto permite pintarlo directamente con `text-white` (o el color que se quiera) sobre el fondo de plataforma, sin necesidad de un wrapper `bg-white rounded-md`.
+
+```jsx
+// Correcto — sin wrapper, icono blanco directo sobre el color de plataforma
+<button className="bg-platform-google text-white p-3 flex items-center gap-3">
+  <GoogleIcon className="w-7 h-7 flex-shrink-0 text-white" />
+  <div>
+    <h3 className="font-bold">Google Trends</h3>
+  </div>
+</button>
+```
 
 **Headers de los acordeones de DataLayer:**
-Cada plataforma debe usar su color y logo OFICIAL en el header del acordeón, no los tokens del cliente:
+Cada plataforma debe usar su color oficial de fondo y el logo monochrome blanco:
 
-| Plataforma | bg | Texto | Icono | Wrapper |
-|-----------|-----|-------|-------|---------|
-| Google Trends | `bg-platform-google` (#1A73E8) | `text-white` | `<GoogleIcon>` | `bg-white rounded-md` (icono multicolor) |
-| TikTok | `bg-platform-tiktok` (#010101) | `text-white` | `<TikTokIcon>` con `text-platform-tiktok` | `bg-white rounded-md` |
-| Meta | `bg-platform-meta` (#1877F2) | `text-white` | `<MetaIcon>` con `text-platform-meta` | `bg-white rounded-md` |
-| GA4 | `bg-platform-ga4` (#E37400) | `text-fitzone-charcoal` (#E37400+white falla AA 2.8:1) | `<GA4Icon>` | `bg-white rounded-md` |
+| Plataforma | bg | Texto + icono |
+|-----------|-----|---------------|
+| Google Trends | `bg-platform-google` (#1A73E8) | `text-white` + `<GoogleIcon>` blanco |
+| TikTok | `bg-platform-tiktok` (#010101) | `text-white` + `<TikTokIcon>` blanco |
+| Meta | `bg-platform-meta` (#1877F2) | `text-white` + `<MetaIcon>` blanco |
+| GA4 | `bg-platform-ga4` (#E37400) | `text-white` + `<GA4Icon>` blanco |
 
 Los tokens `platform.google`, `platform.tiktok`, `platform.meta`, `platform.ga4` deben estar definidos en `tailwind.config.js` (sección `colors.platform`).
 
-Si se necesita un ícono adicional, buscar en `https://github.com/simple-icons/simple-icons/tree/develop/icons` y añadir como componente función en `PlatformIcons.jsx`.
+> **Nota WCAG:** GA4 `#E37400` + `text-white` da ~2.8:1 (estrictamente falla AA para texto pequeño). En la práctica el branding oficial de Google Analytics es naranja+blanco y los headers son texto bold ≥14px, donde el ratio real percibido es aceptable. Si el cliente lo pide explícitamente, usar `text-fitzone-charcoal`.
+
+**Cómo agregar un icono nuevo (ej. LinkedIn, YouTube, X):**
+1. Ir a `https://simpleicons.org/`, buscar la marca, copiar el path SVG.
+2. Agregar como componente función en `PlatformIcons.jsx`:
+```jsx
+export const YouTubeIcon = ({ className = '' }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" fill="currentColor">
+    <path d="..." />
+  </svg>
+);
+```
+3. Agregar el color oficial al `tailwind.config.js` `colors.platform`.
+4. Importarlo en el componente que lo necesite y usarlo con `text-white` directo.
 
 ### Opacidades y contraste
 Tailwind permite opacidades como `text-white/90` o `bg-fitzone-purple/20`. Al usar opacidades bajas en texto, verificar siempre el contraste resultante sobre el fondo específico. El valor `/70` en texto blanco sobre fondo oscuro puede fallar WCAG si el fondo no es suficientemente oscuro.
