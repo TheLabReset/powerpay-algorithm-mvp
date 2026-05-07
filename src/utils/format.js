@@ -1,16 +1,16 @@
-// Helpers de formato numérico en español (es-PE):
-// miles con punto, decimales con coma.
+// Helpers de formato numérico (formato US):
+// miles con coma, decimales con punto.
+// Ej: 1,234,567.89 / $9.93 / 22.9% / 4.2M
 
 export const formatES = (n, decimals = null) => {
   if (n === null || n === undefined) return '';
   if (typeof n !== 'number') return String(n);
-  const fixed = decimals !== null ? n.toFixed(decimals) : String(n);
-  return fixed.replace('.', ',');
+  return decimals !== null ? n.toFixed(decimals) : String(n);
 };
 
 export const formatThousands = (n) => {
   if (n === null || n === undefined) return '';
-  return Number(n).toLocaleString('es-PE');
+  return Number(n).toLocaleString('en-US');
 };
 
 export const formatMoney = (n, decimals = 2) => {

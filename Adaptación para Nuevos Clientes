@@ -64,20 +64,19 @@ npm install @nivo/funnel
 npm run build
 ```
 
-**Crear `src/utils/format.js` desde el primer momento.** JS por defecto renderiza `1234.56` con punto y `1,234` con coma — formato US. Para español necesitamos lo opuesto. No improvisar inline en cada componente; centralizar:
+**Crear `src/utils/format.js` desde el primer momento.** Convención del repo: **formato US — coma para miles y punto para decimales** (ej. `1,234.56`, `$9.93`, `22.9%`, `4.2M`). Esta convención aplica a todo lo visible al usuario; las celdas de Recharts/nivo y los labels de KPIs deben usar los helpers, no `${num}` inline.
 
 ```js
 // src/utils/format.js
 export const formatES = (n, decimals = null) => {
   if (n === null || n === undefined) return '';
   if (typeof n !== 'number') return String(n);
-  const fixed = decimals !== null ? n.toFixed(decimals) : String(n);
-  return fixed.replace('.', ',');
+  return decimals !== null ? n.toFixed(decimals) : String(n);
 };
 
 export const formatThousands = (n) => {
   if (n === null || n === undefined) return '';
-  return Number(n).toLocaleString('es-PE');
+  return Number(n).toLocaleString('en-US');
 };
 
 export const formatMoney = (n, decimals = 2) => `$${formatES(n, decimals)}`;
@@ -94,7 +93,7 @@ Importarlo en los 4 componentes JSX desde el primer edit:
 import { formatES, formatThousands, formatMoney, formatPercent, formatCompact } from '../utils/format';
 ```
 
-**Sin este helper, en la revisión final aparecerán 10+ hallazgos ALTA por decimales con punto.**
+**Sin este helper, los strings hardcoded quedan inconsistentes entre punto y coma decimal.**
 
 ---
 
@@ -392,11 +391,12 @@ Sin esto, el tab del browser y los previews al compartir el link siguen mostrand
 **Tildes:**
 - Verificar: Análisis, Métricas, Distribución, Evolución, Último/Últimos, Día/Días, Índice, Único, Interés, automático/automáticas, notificación, Activación, Optimización, Conversión, Información, Acción, Tamaño, Categoría, Histórico, Sentimiento, Búsqueda, Educación, Promoción, Comparación, Tecnología, vía (no "via")
 
-**Números en español:**
-- Miles: punto → 1.250, 74.200, 10.400.000
-- Decimales: coma → 7,20%, 1,67%, $8,50
+**Números (formato US, convención del repo):**
+- Miles: coma → 1,250 / 74,200 / 10,400,000
+- Decimales: punto → 7.20% / 1.67% / $8.50
 - Rangos de precio: S/650-850/mes (guion, sin espacios)
-- **Usar siempre helpers `formatES`, `formatMoney`, `formatPercent`, `formatThousands`** (ver Fase 0.5). NO usar `${num}` directo, `.toFixed(N)`, `.toLocaleString()` sin locale.
+- Soles peruanos: usar `S/` sin espacio (ej. S/2,500). Dólares: `$9.93`.
+- **Usar siempre helpers `formatES`, `formatMoney`, `formatPercent`, `formatThousands`, `formatCompact`** (ver Fase 0.5). NO usar `${num}` directo, `.toFixed(N)` sin replace adecuado, `.toLocaleString()` sin locale.
 
 **Tono — anti-patrones explícitos:**
 
@@ -434,8 +434,11 @@ grep -rE "(Late night|Demo Client|via )" src/ public/data/
 # .toUpperCase() en strings de prioridad
 grep -rE "\.toUpperCase\(\)" src/
 
-# Decimales con punto en strings hardcodeados
-grep -rE "'[0-9]+\.[0-9]+(M|K|%)'" src/
+# Decimales con coma en strings hardcodeados (deben ser punto en formato US)
+grep -rE "'[0-9]+,[0-9]+(M|K|%)'" src/
+
+# Miles con punto en strings (deben ser coma en formato US)
+grep -rE "[0-9]+\.[0-9]{3}([0-9]| |%|<)" src/components/ src/data/mockData.js
 
 # Cliente anterior visible (FitZone, gimnasio, etc. — adaptar al template anterior)
 grep -rE "(FitZone|fitness|gimnasio|Smart Fit|UCSP|UPN|Powerpay|Dumbbell)" src/ public/data/*/latest.json | grep -v "// "
@@ -960,7 +963,21 @@ Documentadas para no confundirse en futuras adaptaciones:
 Los nombres de los tokens (`fitzone-purple`, etc.) son históricos del primer cliente y se mantienen por compatibilidad. Solo cambiar los valores hex en `tailwind.config.js`. Tailwind JIT propaga los cambios automáticamente.
 
 ### Iconos de plataformas
-`PlatformIcons.jsx` contiene SVGs inline de Simple Icons (simpleicons.org) para Google, TikTok, Meta y GA4. No requieren instalación npm. Si se necesita un ícono adicional, buscar en `https://github.com/simple-icons/simple-icons/tree/develop/icons` y añadir como componente función en ese archivo.
+`src/components/PlatformIcons.jsx` contiene SVGs inline de Simple Icons (simpleicons.org) para Google (G multicolor), TikTok (logo monochrome), Meta (Facebook "f") y Google Analytics 4. No requieren instalación npm.
+
+**Headers de los acordeones de DataLayer:**
+Cada plataforma debe usar su color y logo OFICIAL en el header del acordeón, no los tokens del cliente:
+
+| Plataforma | bg | Texto | Icono | Wrapper |
+|-----------|-----|-------|-------|---------|
+| Google Trends | `bg-platform-google` (#1A73E8) | `text-white` | `<GoogleIcon>` | `bg-white rounded-md` (icono multicolor) |
+| TikTok | `bg-platform-tiktok` (#010101) | `text-white` | `<TikTokIcon>` con `text-platform-tiktok` | `bg-white rounded-md` |
+| Meta | `bg-platform-meta` (#1877F2) | `text-white` | `<MetaIcon>` con `text-platform-meta` | `bg-white rounded-md` |
+| GA4 | `bg-platform-ga4` (#E37400) | `text-fitzone-charcoal` (#E37400+white falla AA 2.8:1) | `<GA4Icon>` | `bg-white rounded-md` |
+
+Los tokens `platform.google`, `platform.tiktok`, `platform.meta`, `platform.ga4` deben estar definidos en `tailwind.config.js` (sección `colors.platform`).
+
+Si se necesita un ícono adicional, buscar en `https://github.com/simple-icons/simple-icons/tree/develop/icons` y añadir como componente función en `PlatformIcons.jsx`.
 
 ### Opacidades y contraste
 Tailwind permite opacidades como `text-white/90` o `bg-fitzone-purple/20`. Al usar opacidades bajas en texto, verificar siempre el contraste resultante sobre el fondo específico. El valor `/70` en texto blanco sobre fondo oscuro puede fallar WCAG si el fondo no es suficientemente oscuro.

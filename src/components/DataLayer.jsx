@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, TrendingUp, Video, Share2, CreditCard, RefreshCw, ChevronDown, ChevronUp, BarChart3, Info, Music, Target, DollarSign, Layers, Lightbulb, Users, Globe, MapPin, Eye, Clock, MousePointer, Smartphone, Monitor, ExternalLink, Calendar } from 'lucide-react';
+import { GoogleIcon, TikTokIcon, MetaIcon, GA4Icon } from './PlatformIcons';
 import { formatES, formatMoney, formatPercent } from '../utils/format';
 
 export default function DataLayer() {
@@ -106,11 +107,11 @@ export default function DataLayer() {
 
     if (mlData?.scores?.individual) {
       return {
-        overall: fmt(mlData.scores.overall, '7,8'),
-        search: fmt(mlData.scores.individual.search?.final, '8,4'),
-        trend: fmt(mlData.scores.individual.trend?.final, '7,2'),
-        social: fmt(mlData.scores.individual.social?.final, '7,8'),
-        intent: fmt(mlData.scores.individual.intent?.final, '7,1'),
+        overall: fmt(mlData.scores.overall, '7.8'),
+        search: fmt(mlData.scores.individual.search?.final, '8.4'),
+        trend: fmt(mlData.scores.individual.trend?.final, '7.2'),
+        social: fmt(mlData.scores.individual.social?.final, '7.8'),
+        intent: fmt(mlData.scores.individual.intent?.final, '7.1'),
         isML: true,
         weights: mlData.scores.weights
       };
@@ -118,11 +119,11 @@ export default function DataLayer() {
 
     // Mock Powerpay scores
     return {
-      overall: '7,8',
-      search: '8,4',
-      trend: '7,2',
-      social: '7,8',
-      intent: '7,1',
+      overall: '7.8',
+      search: '8.4',
+      trend: '7.2',
+      social: '7.8',
+      intent: '7.1',
       isML: false
     };
   };
@@ -141,17 +142,17 @@ export default function DataLayer() {
       {
         source: 'TikTok',
         IconComponent: Video,
-        text: '#CyberWow alcanza 6,8M de views en Perú con +82% de crecimiento. El contenido de comparativas y unboxing tiene engagement 9,2/10.',
+        text: '#CyberWow alcanza 6.8M de views en Perú con +82% de crecimiento. El contenido de comparativas y unboxing tiene engagement 9.2/10.',
       },
       {
         source: 'Meta',
         IconComponent: Share2,
-        text: 'Sentimiento social positivo en torno a cuotas sin intereses. "Cyber Wow y Cyber Days" concentra 12,4K menciones con 82/100 de engagement.',
+        text: 'Sentimiento social positivo en torno a cuotas sin intereses. "Cyber Wow y Cyber Days" concentra 12.4K menciones con 82/100 de engagement.',
       },
       {
         source: 'GA4',
         IconComponent: BarChart3,
-        text: '165K sesiones derivaron en 1.450 registros iniciados y 1.050 cuentas creadas con KYC validado (tasa registro→KYC de 72%). La página "/registrarme" muestra 5,8% de tasa de conversión.',
+        text: '165K sesiones derivaron en 1,450 registros iniciados y 1,050 cuentas creadas con KYC validado (tasa registro→KYC de 72%). La página "/registrarme" muestra 5.8% de tasa de conversión.',
       },
     ];
   };
@@ -160,7 +161,7 @@ export default function DataLayer() {
   const multiSourceInsight = {
     source: 'Análisis Multi-Fuente',
     IconComponent: Layers,
-    text: 'Las cuatro fuentes coinciden en una ventana estacional fuerte hacia Cyber Wow. La combinación de búsquedas en alza (+42%), engagement social sostenido (8,2/10), contenido relevante en TikTok y conversiones web en aumento sugieren un momento favorable para escalar inversión. Se observa una oportunidad de posicionar el mensaje "no consume tu línea de crédito" como diferenciador.',
+    text: 'Las cuatro fuentes coinciden en una ventana estacional fuerte hacia Cyber Wow. La combinación de búsquedas en alza (+42%), engagement social sostenido (8.2/10), contenido relevante en TikTok y conversiones web en aumento sugieren un momento favorable para escalar inversión. Se observa una oportunidad de posicionar el mensaje "no consume tu línea de crédito" como diferenciador.',
     recommendation: 'Se sugiere ampliar Meta Ads en torno a categorías de tecnología y electrohogar y reforzar Search en términos de "cuotas sin intereses" durante Cyber Wow.'
   };
 
@@ -182,21 +183,21 @@ export default function DataLayer() {
 
   // Expanded TikTok hashtags data
   const tiktokHashtags = [
-    { hashtag: '#CuotasSinIntereses', views: '4,2M', posts: '18,5K', growth: '+38%', region: 'Perú', engagement: 8.4 },
-    { hashtag: '#CyberWow', views: '6,8M', posts: '12,2K', growth: '+82%', region: 'Perú', engagement: 9.2 },
-    { hashtag: '#ComprarEnCuotas', views: '1,9M', posts: '8,4K', growth: '+25%', region: 'LATAM', engagement: 7.8 },
-    { hashtag: '#FintechPeru', views: '980K', posts: '5,2K', growth: '+18%', region: 'Perú', engagement: 7.2 },
-    { hashtag: '#BNPLPeru', views: '320K', posts: '1,8K', growth: '+95%', region: 'Perú', engagement: 8.0 },
+    { hashtag: '#CuotasSinIntereses', views: '4.2M', posts: '18.5K', growth: '+38%', region: 'Perú', engagement: 8.4 },
+    { hashtag: '#CyberWow', views: '6.8M', posts: '12.2K', growth: '+82%', region: 'Perú', engagement: 9.2 },
+    { hashtag: '#ComprarEnCuotas', views: '1.9M', posts: '8.4K', growth: '+25%', region: 'LATAM', engagement: 7.8 },
+    { hashtag: '#FintechPeru', views: '980K', posts: '5.2K', growth: '+18%', region: 'Perú', engagement: 7.2 },
+    { hashtag: '#BNPLPeru', views: '320K', posts: '1.8K', growth: '+95%', region: 'Perú', engagement: 8.0 },
     { hashtag: '#Powerpay', views: '145K', posts: '320', growth: '+72%', region: 'Perú', engagement: 9.0 },
-    { hashtag: '#ShoppingHaul', views: '2,4M', posts: '9,8K', growth: '+22%', region: 'LATAM', engagement: 8.6 },
-    { hashtag: '#FinanzasPersonales', views: '1,2M', posts: '6,5K', growth: '+34%', region: 'LATAM', engagement: 7.5 },
+    { hashtag: '#ShoppingHaul', views: '2.4M', posts: '9.8K', growth: '+22%', region: 'LATAM', engagement: 8.6 },
+    { hashtag: '#FinanzasPersonales', views: '1.2M', posts: '6.5K', growth: '+34%', region: 'LATAM', engagement: 7.5 },
   ];
 
   // Expanded TikTok sounds
   const tiktokSounds = [
-    { name: 'Oh No Oh No (Kreepa remix LATAM)', type: 'Comedia', usage: '2,1M', trend: '+12%' },
+    { name: 'Oh No Oh No (Kreepa remix LATAM)', type: 'Comedia', usage: '2.1M', trend: '+12%' },
     { name: 'Aesthetic shopping vibes', type: 'Lifestyle', usage: '650K', trend: '+28%' },
-    { name: 'Una noche en Medellín sped-up', type: 'Trend joven', usage: '3,2M', trend: '+15%' },
+    { name: 'Una noche en Medellín sped-up', type: 'Trend joven', usage: '3.2M', trend: '+15%' },
     { name: 'Money Money Money (TikTok flip)', type: 'Finanzas', usage: '720K', trend: '+8%' },
     { name: 'Voiceover narrativo PE', type: 'Storytime', usage: '180K', trend: '+42%' },
     { name: 'Cyber Wow beat genérico Perú', type: 'Estacional', usage: '320K', trend: '+95%' },
@@ -249,7 +250,7 @@ export default function DataLayer() {
             <div className="text-right">
               <p className="text-fitzone-textGray text-[10px] sm:text-xs uppercase font-semibold mb-0.5 sm:mb-1">Score Global</p>
               <p className="text-2xl sm:text-3xl font-bold text-fitzone-purple">{scores.overall}</p>
-              <p className="text-[10px] sm:text-xs text-fitzone-textGray">de 10,0</p>
+              <p className="text-[10px] sm:text-xs text-fitzone-textGray">de 10.0</p>
             </div>
             <button
               onClick={loadData}
@@ -374,10 +375,12 @@ export default function DataLayer() {
       <div className="bg-fitzone-slate rounded-xl shadow-lg overflow-hidden border border-fitzone-purple/10">
         <button
           onClick={() => toggleSection('trends')}
-          className="w-full bg-fitzone-cyan text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
+          className="w-full bg-platform-google text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <Search className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
+              <GoogleIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Google Trends</h3>
               <p className="text-[10px] sm:text-xs text-white/80">Keywords BNPL y cuotas - Score: {scores.search}/10</p>
@@ -448,13 +451,15 @@ export default function DataLayer() {
       <div className="bg-fitzone-slate rounded-xl shadow-lg overflow-hidden border border-fitzone-purple/10">
         <button
           onClick={() => toggleSection('tiktok')}
-          className="w-full bg-fitzone-emerald text-fitzone-charcoal p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
+          className="w-full bg-platform-tiktok text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <Video className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
+              <TikTokIcon className="w-5 h-5 sm:w-6 sm:h-6 text-platform-tiktok" />
+            </div>
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">TikTok Creative Center</h3>
-              <p className="text-[10px] sm:text-xs text-fitzone-charcoal/80">Hashtags virales - Score: {scores.trend}/10</p>
+              <p className="text-[10px] sm:text-xs text-white/80">Hashtags virales - Score: {scores.trend}/10</p>
             </div>
           </div>
           {expandedSections.tiktok ? <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
@@ -552,10 +557,12 @@ export default function DataLayer() {
       <div className="bg-fitzone-slate rounded-xl shadow-lg overflow-hidden border border-fitzone-purple/10">
         <button
           onClick={() => toggleSection('meta')}
-          className="w-full bg-fitzone-purple text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
+          className="w-full bg-platform-meta text-white p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <Share2 className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
+              <MetaIcon className="w-5 h-5 sm:w-6 sm:h-6 text-platform-meta" />
+            </div>
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Meta/Facebook Trends</h3>
               <p className="text-[10px] sm:text-xs text-white/80">Redes sociales - Score: {scores.social}/10</p>
@@ -679,10 +686,12 @@ export default function DataLayer() {
       <div className="bg-fitzone-slate rounded-xl shadow-lg overflow-hidden border border-fitzone-purple/10">
         <button
           onClick={() => toggleSection('ga4')}
-          className="w-full bg-fitzone-amber text-fitzone-charcoal p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
+          className="w-full bg-platform-ga4 text-fitzone-charcoal p-3 sm:p-4 flex items-center justify-between hover:brightness-110 transition"
         >
           <div className="flex items-center gap-2 sm:gap-3">
-            <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-md flex items-center justify-center flex-shrink-0">
+              <GA4Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
             <div className="text-left min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Google Analytics 4</h3>
               <p className="text-[10px] sm:text-xs text-fitzone-charcoal/80">Conversión - Score: {scores.intent}/10</p>
@@ -700,7 +709,7 @@ export default function DataLayer() {
                   <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fitzone-textGray" />
                   <p className="text-[10px] sm:text-xs text-fitzone-textGray">Usuarios</p>
                 </div>
-                <p className="text-lg sm:text-xl font-bold text-white">142,5K</p>
+                <p className="text-lg sm:text-xl font-bold text-white">142.5K</p>
                 <p className="text-[10px] sm:text-xs text-fitzone-emerald">+24%</p>
               </div>
               <div className="bg-fitzone-slate rounded-lg p-3 sm:p-4">
@@ -716,16 +725,16 @@ export default function DataLayer() {
                   <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fitzone-textGray" />
                   <p className="text-[10px] sm:text-xs text-fitzone-textGray">Registros</p>
                 </div>
-                <p className="text-lg sm:text-xl font-bold text-fitzone-purple">1.450</p>
-                <p className="text-[10px] sm:text-xs text-fitzone-emerald">+22,9%</p>
+                <p className="text-lg sm:text-xl font-bold text-fitzone-purple">1,450</p>
+                <p className="text-[10px] sm:text-xs text-fitzone-emerald">+22.9%</p>
               </div>
               <div className="bg-fitzone-slate rounded-lg p-3 sm:p-4">
                 <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
                   <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fitzone-textGray" />
                   <p className="text-[10px] sm:text-xs text-fitzone-textGray">Conv.</p>
                 </div>
-                <p className="text-lg sm:text-xl font-bold text-fitzone-emerald">0,88%</p>
-                <p className="text-[10px] sm:text-xs text-fitzone-textGray">Meta: 0,80%</p>
+                <p className="text-lg sm:text-xl font-bold text-fitzone-emerald">0.88%</p>
+                <p className="text-[10px] sm:text-xs text-fitzone-textGray">Meta: 0.80%</p>
               </div>
             </div>
 

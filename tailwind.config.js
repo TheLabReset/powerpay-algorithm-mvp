@@ -47,6 +47,13 @@ export default {
         warning: '#F4B842',
         error: '#EF4444',
         info: '#06B6D4',
+        // Platform official brand colors (no modificar)
+        platform: {
+          google: '#1A73E8',
+          tiktok: '#010101',
+          meta:   '#1877F2',
+          ga4:    '#E37400',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
