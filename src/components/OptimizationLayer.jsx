@@ -361,22 +361,22 @@ export default function OptimizationLayer() {
           <div className="space-y-3 sm:space-y-4">
             <div className="bg-fitzone-purple/10 rounded-lg p-3 sm:p-4 border border-fitzone-purple/20">
               <p className="text-xs text-fitzone-textGray mb-0.5 sm:mb-1">Conversión Global</p>
-              <p className="text-xl sm:text-2xl font-bold text-fitzone-lightPurple">0,058%</p>
+              <p className="text-xl sm:text-2xl font-bold text-fitzone-lightPurple">0.058%</p>
               <p className="text-xs text-fitzone-textGray mt-1">Alcance → Cuentas Creadas</p>
             </div>
             <div className="bg-fitzone-emerald/10 rounded-lg p-3 sm:p-4 border border-fitzone-emerald/20">
               <p className="text-xs text-fitzone-textGray mb-0.5 sm:mb-1">Registro → KYC</p>
-              <p className="text-xl sm:text-2xl font-bold text-fitzone-emerald">72,4%</p>
+              <p className="text-xl sm:text-2xl font-bold text-fitzone-emerald">72.4%</p>
               <p className="text-xs text-fitzone-textGray mt-1">Validación de identidad</p>
             </div>
             <div className="bg-fitzone-cyan/10 rounded-lg p-3 sm:p-4 border border-fitzone-cyan/20">
               <p className="text-xs text-fitzone-textGray mb-0.5 sm:mb-1">Web → Registros</p>
-              <p className="text-xl sm:text-2xl font-bold text-fitzone-cyan">5,4%</p>
+              <p className="text-xl sm:text-2xl font-bold text-fitzone-cyan">5.4%</p>
               <p className="text-xs text-fitzone-textGray mt-1">Visitas web a registros</p>
             </div>
             <div className="bg-fitzone-amber/10 rounded-lg p-3 sm:p-4 border border-fitzone-amber/20">
               <p className="text-xs text-fitzone-textGray mb-0.5 sm:mb-1">Mayor caída</p>
-              <p className="text-xl sm:text-2xl font-bold text-fitzone-amber">98,5%</p>
+              <p className="text-xl sm:text-2xl font-bold text-fitzone-amber">98.5%</p>
               <p className="text-xs text-fitzone-textGray mt-1">Alcance → Visitas Web</p>
             </div>
           </div>
